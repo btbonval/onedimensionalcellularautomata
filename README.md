@@ -24,8 +24,8 @@ edges.
 
 # Rules
 
-It is assumed users will create their own rules, but some are provided by way
-of example.
+It is assumed users will create their own rules, but some may be generated as
+a means of exploring what rules should look like.
 
 Rules are mappings of tuples to boolean values. Each rule's tuple should be the
 length of the neighborhood: each rule is mapping a neighborhood onto a cell.
@@ -81,4 +81,4 @@ encountered for a second time (indicating a loop).
     n1_wrap = neighborhood.nx_generator(1, wrap=True)
     # run Wolfram's rule 110 on the initial state.
     # this will also create a matplotlib space-time graph.
-    result = update.evolve(100, state0, n1_wrap, rules.wolfram_110)
+    result = update.evolve(100, state0, n1_wrap, rules.wolfram(110))
