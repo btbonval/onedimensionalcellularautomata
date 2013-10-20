@@ -49,6 +49,13 @@ Same neighborhood without wrap, same assumptions as above:
     ==o==--- (5 cells selected)
     -==o==-- (5 cells selected)
 
+# States
+
+The user is expected to generate an initial state, normally from numpy.
+
+A state is the automata space defined as a boolean numpy array of some fixed
+length `l`. 
+
 # Update 
 
 Users are not expected to modify the update functions.
@@ -71,7 +78,7 @@ encountered for a second time (indicating a loop).
     # generate initial state of 200 boolean values (0..2 excluding 2, thus 0 or 1)
     state0 = numpy.random.randint(0,2,200).astype(bool)
     # create a neighborhood of 1 (left, center, right) which wraps around edges
-    n1_wrap = neighborhood.nx_generator((1, wrap=True)
+    n1_wrap = neighborhood.nx_generator(1, wrap=True)
     # run Wolfram's rule 110 on the initial state.
     # this will also create a matplotlib space-time graph.
     result = update.evolve(100, state0, n1_wrap, rules.wolfram_110)
