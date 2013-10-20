@@ -10,7 +10,6 @@ from matplotlib import pyplot
 from matplotlib import cm
 
 from itertools import imap
-from itertools import starmap
 from itertools import repeat 
 from itertools import izip
 
@@ -63,6 +62,14 @@ def evolve(steps, state, *args, **kwargs):
     Returns a 2D array with increasing rows over time.
     '''
 
+    if 'plot' in kwargs:
+        # Extract plot keyword if present
+        plot = kwargs['plot']
+        del kwargs['plot']
+    else:
+        # Assume we like pictures!
+        plot = True
+
     l = len(state)
     if steps <= 0:
         # arbitrarily define a number of rows of history, a bit heuristic
@@ -93,20 +100,19 @@ def evolve(steps, state, *args, **kwargs):
     # switch to one past the last index for indexing arrays
     s = s + 1
 
-    # plot the result
-    pyplot.imshow(state_history[0:s,:], interpolation='none', cmap=cm.gray, aspect=l/float(s))
-    pyplot.tick_params(axis='both', which='both', length=0, width=0, labelbottom='off', labeltop='off', labelleft='off', labelright='off')
-
-    # assume that once the given steps are reached, execution stopped forcibly.
-    # thus if the given steps are not reached, then execution stopped at a loop.
-    if s == steps:
-        pyplot.title('Truncated at ' + str(s) + ' steps.')
-    else:
-        match_step = previous_states[bt2i(state)] + 1
-        pyplot.title('Completed after ' + str(s) + ' steps. Loops at step ' + str(match_step))
-    pyplot.ylabel('< iterations')
-    pyplot.xlabel('state')
-    pyplot.show()
+    if plot:
+        # plot the result
+        pyplot.imshow(state_history[0:s,:], interpolation='none', cmap=cm.gray, aspect=l/float(s))
+        pyplot.tick_params(axis='both', which='both', length=0, width=0, labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    
+        if s == steps and bt2i(state) not in previous_states:
+            pyplot.title('Truncated at ' + str(s) + ' steps.')
+        else:
+            match_step = previous_states[bt2i(state)] + 1
+            pyplot.title('Completed after ' + str(s) + ' steps. Loops at step ' + str(match_step))
+        pyplot.ylabel('< iterations')
+        pyplot.xlabel('state')
+        pyplot.show()
 
     # return only the calculated rows
     return state_history[0:s, :]
