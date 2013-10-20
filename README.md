@@ -35,19 +35,19 @@ accounted for. A neighborhood of 5 cells centered on an target cell must be
 reduced to 3 cells on either edge. Thus mappings must exist for neighborhoods
 of size 3, 4, and 5.
 
-Neighborhoods (==o==) with wrap, assuming target is centered on (o):
+Neighborhood of size 2 `==o==` with wrap, assuming target is centered on `o`:
 
-    o==---== (neighborhood size 5)
-    =o==---= (5)
-    ==o==--- (5)
-    -==o==-- (5)
+    o==---== (5 cells selected)
+    =o==---= (5 cells selected)
+    ==o==--- (5 cells selected)
+    -==o==-- (5 cells selected)
     
-Neighborhoods without wrap, assuming target is centered (o):
+Same neighborhood without wrap, same assumptions as above:
 
-    o==----- (neighborhood size 3)
-    =o==---- (4)
-    ==o==--- (5)
-    -==o==-- (5)
+    o==----- (3 cells selected)
+    =o==---- (4 cells selected)
+    ==o==--- (5 cells selected)
+    -==o==-- (5 cells selected)
 
 # Update 
 
