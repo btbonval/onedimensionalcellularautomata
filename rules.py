@@ -3,7 +3,7 @@ Example rules are defined herein. Rules are generally meant to be defined by
 the user.
 '''
 
-from itertools import starmap, repeat, izip
+from itertools import imap, repeat, izip
 from utils import i2bt, bt2i
 
 # Generate Wolfram's rules for neighborhood 1 automata
@@ -24,6 +24,6 @@ def wolfram(rulenum):
     width = 3
     image = i2bt(rulenum, 2**width)[::-1]
     # for 0 to 8, run i2bt(0, width) to i2bt(8, width)
-    preimage = starmap(i2bt, izip(range(0,2**width), repeat(width)))
+    preimage = imap(i2bt, range(0,2**width), repeat(width))
     # line up the preimages with the images and make it a dict/hashmap
     return dict(izip(preimage, image))
