@@ -36,12 +36,14 @@ reduced to 3 cells on either edge. Thus mappings must exist for neighborhoods
 of size 3, 4, and 5.
 
 Neighborhoods (==o==) with wrap, assuming target is centered on (o):
+
     o==---== (neighborhood size 5)
     =o==---= (5)
     ==o==--- (5)
     -==o==-- (5)
     
 Neighborhoods without wrap, assuming target is centered (o):
+
     o==----- (neighborhood size 3)
     =o==---- (4)
     ==o==--- (5)
